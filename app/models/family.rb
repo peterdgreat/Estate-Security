@@ -1,3 +1,3 @@
 class Family < ApplicationRecord
-  has_many :users, class_name: "user", foreign_key: "reference_id"
+  has_many :users
 end
