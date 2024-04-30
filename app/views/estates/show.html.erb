@@ -1,0 +1,19 @@
+<h1><%= @estate.name %></h1>
+
+<p>
+  <strong>State:</strong>
+  <%= @estate.state %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @estate.city %>
+</p>
+<p>
+  <strong>street:</strong>
+  <%= @estate.street %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_estate_path(@estate) %> |
+<%= link_to 'Back', estates_path %>
