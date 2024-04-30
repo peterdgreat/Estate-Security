@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_165342) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_30_204111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "estates", force: :cascade do |t|
+    t.string "name"
+    t.integer "current_occupancy"
+    t.string "city"
+    t.string "state"
+    t.string "street"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_estates_on_name", unique: true
+  end
 
   create_table "families", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "estate_id"
+    t.index ["estate_id"], name: "index_families_on_estate_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,10 +44,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_165342) do
     t.string "firstname"
     t.string "lastname"
     t.bigint "family_id"
+    t.bigint "estate_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["estate_id"], name: "index_users_on_estate_id"
     t.index ["family_id"], name: "index_users_on_family_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "families", "estates"
+  add_foreign_key "users", "estates"
   add_foreign_key "users", "families"
 end
