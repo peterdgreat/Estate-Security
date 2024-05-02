@@ -27,5 +27,19 @@
     <%= form.label :name %><br />
     <%= form.text_field :name %>
   </div>
+   <!-- User fields -->
+  <%= form.fields_for :users do |user_fields| %>
+    <%= user_fields.label :email %>
+    <%= user_fields.email_field :email %>
+
+    <%= user_fields.label :firstname %>
+    <%= user_fields.text_field :firstname %>
+    <%= user_fields.label :lastname %>
+    <%= user_fields.text_field :lastname %>
+    <%= user_fields.hidden_field :admin, value: true %>
+
+
+  <% end %>
+
   <%= form.submit %>
 <% end %>

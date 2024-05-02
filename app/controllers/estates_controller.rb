@@ -6,6 +6,7 @@ class EstatesController < ApplicationController
 
   def new
     @estate = Estate.new
+    @estate.users.build
   end
 
   def show
@@ -21,6 +22,7 @@ class EstatesController < ApplicationController
         format.html { redirect_to(@estate) }
         format.xml { render xml: @estate, status: :created, location: @estate }
       else
+        puts "estate error creating #{@estate.errors.messages}"
         format.html { render action: "new" }
         format.xml { render xml: @estate.errors, status: :unprocessable_entity }
       end
@@ -31,9 +33,8 @@ class EstatesController < ApplicationController
   private
 
   def estate_params
-    params.require(:estate).permit(:name,:city, :state, :street )
+    params.require(:estate).permit(:name, :city, :state, :street, users_attributes: [:email, :firstname, :lastname, :admin])
   end
-
 
 
 end
