@@ -17,30 +17,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-      temp_password= Devise.friendly_token.first(8)
-  
-       @user = User.new(user_params.merge(password: temp_password, password_confirmation: temp_password))
-       puts
+    temp_password = Devise.friendly_token.first(8)
+    @user = User.new(user_params)
     unless @user.admin?
       if current_user
-        if  current_user.admin?
-            @family = Family.create
-            @user.family = @family
+        if current_user.admin?
+          @family = Family.create
+          @user.family = @family
         else
-            @user.family = current_user.family
+          @user.family = current_user.family
         end
       end
     end
-      if @user.save
-        UserMailer.with(user: @user, password: temp_password).welcome_email.deliver_later
 
-        flash.now[:notice] = "#{@user.firstname}  Created!"
-        redirect_to root_path
-      else
-        puts "err"
-        flash.now[:notice] = 'Error Occured!'
-        redirect_to new_user_registration_path
-      end
+    if @user.save
+      flash.now[:notice] = "#{@user.firstname}  Created!"
+    else
+      puts "err #{@user.errors.messages}"
+      flash.now[:notice] = 'Error Occured!'
+      render :new
+    end
   end
 
   def show
