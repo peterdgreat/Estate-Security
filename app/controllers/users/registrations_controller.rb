@@ -19,7 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     temp_password = Devise.friendly_token.first(8)
     @user = User.new(user_params)
-    unless @user.admin?
+    unless @user.admin? || @user.security?
       if current_user
         if current_user.admin?
           @family = Family.create
@@ -70,7 +70,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
       def user_params
-        params.require(:user).permit(:email,:firstname,:lastname, :admin)
+        params.require(:user).permit(:email,:firstname,:lastname, :admin, :security)
       end
 
       def check_if_admin_or_family

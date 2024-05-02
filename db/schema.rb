@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_30_204111) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_02_222615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_204111) do
     t.string "lastname"
     t.bigint "family_id"
     t.bigint "estate_id"
+    t.boolean "security"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["estate_id"], name: "index_users_on_estate_id"
     t.index ["family_id"], name: "index_users_on_family_id"
