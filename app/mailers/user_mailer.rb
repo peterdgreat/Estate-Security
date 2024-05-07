@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: Rails.application.credentials[:estate_mail]
+  default from: "peterdgreat2016@gmail.com"
 
   def welcome_email
     @user = params[:user]
