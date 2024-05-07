@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts (current_user.email)
    end
     @user = User.new
+    @user.cars.build
   end
 
   # POST /resource
@@ -70,7 +71,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
       def user_params
-        params.require(:user).permit(:email,:firstname,:lastname, :admin, :security)
+        params.require(:user).permit(:email,:firstname,:lastname, :admin, :security,
+        cars_attributes: [:color,:plate_number,:brand,:model])
       end
 
       def check_if_admin_or_family

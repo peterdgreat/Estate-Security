@@ -33,7 +33,8 @@ class EstatesController < ApplicationController
   private
 
   def estate_params
-    params.require(:estate).permit(:name, :city, :state, :street, users_attributes: [:email, :firstname, :lastname, :admin])
+    params.require(:estate).permit(:name, :city, :state, :street,
+    users_attributes: [:id,:email, :firstname, :lastname, :admin])
   end
 
 

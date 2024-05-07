@@ -30,7 +30,19 @@
     </div>
 <% end %>
 
+     <!-- Car fields -->
+  <%= f.fields_for :cars do |car_fields| %>
+    <%= car_fields.label :color %>
+    <%= car_fields.text_field :color %>
 
+    <%= car_fields.label :brand %>
+    <%= car_fields.text_field :brand %>
+    <%= car_fields.label :model %>
+    <%= car_fields.text_field :model %>
+    <%= car_fields.label :plate_number %>
+    <%= car_fields.text_field :plate_number %>
+
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Add users" %>
