@@ -71,7 +71,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
       def user_params
-        params.require(:user).permit(:email,:firstname,:lastname, :admin, :security,
+        params.require(:user).permit(:email,:firstname,:lastname, :admin, :security,:avatar,
         cars_attributes: [:color,:plate_number,:brand,:model])
       end
 

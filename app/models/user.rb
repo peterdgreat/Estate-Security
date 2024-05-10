@@ -7,6 +7,7 @@ class User < ApplicationRecord
   belongs_to :estate,optional: true
   has_many :cars, dependent: :destroy
   accepts_nested_attributes_for :cars
+  has_one_attached :avatar
   attr_accessor :temp_password
 
   before_validation :assign_default_password, if: Proc.new { |user| user.password.blank? }

@@ -36,7 +36,13 @@
     <%= user_fields.text_field :firstname %>
     <%= user_fields.label :lastname %>
     <%= user_fields.text_field :lastname %>
+     <div class="field">
+    <%= user_fields.label :avatar %><br />
+       <%= user_fields.file_field :avatar %>
+  </div>
+
     <%= user_fields.hidden_field :admin, value: true %>
+
 
 
   <% end %>
