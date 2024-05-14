@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_14_120114) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_14_130956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_120114) do
     t.bigint "family_id"
     t.bigint "estate_id"
     t.boolean "security"
+    t.integer "pass_in_code"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["estate_id"], name: "index_users_on_estate_id"
     t.index ["family_id"], name: "index_users_on_family_id"
@@ -99,6 +100,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_120114) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pass_in_code"
+    t.datetime "expiration_date"
     t.index ["user_id"], name: "index_visitors_on_user_id"
   end
 

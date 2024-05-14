@@ -1,0 +1,9 @@
+<p><%=@user.firstname%></p>
+
+<% if @user.pass_in_code? %>
+    <p>
+        <%= @user.pass_in_code %>
+       <%= image_tag @qr_png, alt: "User QR Code" %>
+
+        </p>
+<% end %>
