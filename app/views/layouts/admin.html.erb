@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Estate Admin</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+ <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
+</head>
+<body>
+  <% flash.each do |type, message| %>
+  <div class="flash flash-<%= type %>"><%= message %></div>
+<% end %>
+  <div class="admin-layout">
+    <%= render 'layouts/admin_sidebar' %>
+    <div class="admin-content">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @announcements = Announcement.all
-    @bills = current_user.bills
+    @bills = Bill.all
 
   end
 end
