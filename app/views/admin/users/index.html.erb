@@ -1,0 +1,6 @@
+
+<% @users.each do |user| %>
+<p> <%=user.firstname %> </p>
+<%= image_tag url_for(user.avatar) if user.avatar.attached? %>
+
+  <% end %>

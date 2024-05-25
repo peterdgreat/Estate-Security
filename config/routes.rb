@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-  get 'announcements/index'
-  get 'bills/index'
-  get 'bills/new'
-  get 'bills/create'
+
   # devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root :to => "home#index"
-  resources :estates
   resources :visitors
+
+  namespace :admin do
+    resources :bills
+    resources :announcements
+    resources :estates
+
+    root to: "estates#index"
+  end
+
 
 
   # resources :users, only: [:index,:show, :edit, :update]
