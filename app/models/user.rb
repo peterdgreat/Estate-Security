@@ -7,7 +7,7 @@ class User < ApplicationRecord
   belongs_to :estate,optional: true
   has_many :cars, dependent: :destroy
   has_many :visitors, dependent: :destroy
-  accepts_nested_attributes_for :cars
+  accepts_nested_attributes_for :cars, allow_destroy: true, reject_if: :all_blank
   has_one_attached :avatar
   attr_accessor :temp_password
 

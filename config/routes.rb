@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root :to => "home#index"
   resources :visitors
+  resources :bills
+  resources :announcements
 
   namespace :admin do
     resources :bills
@@ -15,11 +17,25 @@ Rails.application.routes.draw do
 
 
 
-  # resources :users, only: [:index,:show, :edit, :update]
-  devise_for :users, controllers: { registrations: 'users/registrations' ,
-  sessions: 'users/sessions'
-}
-resources :users, module: 'users'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }, path_names: {
+    sign_up: 'new'  # Changes the user sign-up route to /users/new
+  }
+
+  devise_for :admins, controllers: {
+    registrations: 'admins/registrations'
+  }, path: 'admins', path_names: {
+    sign_up: 'users/new'  # Changes the admin user creation route to /admins/users/new
+  }
+
+  resources :users do
+    resources :cars, only: [:new, :create]
+  end
+
+  resources :cars, only: [:edit, :update, :destroy]
+# resources :users, module: 'users'
   # devise_for :users
 
 

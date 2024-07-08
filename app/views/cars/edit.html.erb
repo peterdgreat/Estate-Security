@@ -1,0 +1,25 @@
+<%= form_for @car do |f| %>
+  <div class="field">
+    <%= f.label :color %>
+    <%= f.text_field :color %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :plate_number %>
+    <%= f.text_field :plate_number %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :brand %>
+    <%= f.text_field :brand %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :model %>
+    <%= f.text_field :model %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Update Car" %>
+  </div>
+<% end %>

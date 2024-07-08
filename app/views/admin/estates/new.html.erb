@@ -1,55 +1,43 @@
-
 <% if @estate.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@estate.errors.count, "error") %> prohibited this estate from being saved:</h2>
-
     <ul>
-    <% @estate.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
+      <% @estate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
 <%= form_with(model: @estate, local: true) do |form| %>
- <div class="field">
+  <div class="field">
     <%= form.label :street %><br />
     <%= form.text_field :street %>
   </div>
-    <div class="field">
+  <div class="field">
     <%= form.label :state %><br />
     <%= form.text_field :state %>
   </div>
-    <div class="field">
+  <div class="field">
     <%= form.label :city %><br />
     <%= form.text_field :city %>
   </div>
-    <div class="field">
+  <div class="field">
     <%= form.label :name %><br />
     <%= form.text_field :name %>
   </div>
-   <!-- User fields -->
+  <!-- User fields -->
   <%= form.fields_for :users do |user_fields| %>
     <%= user_fields.label :email %>
     <%= user_fields.email_field :email %>
-
     <%= user_fields.label :firstname %>
     <%= user_fields.text_field :firstname %>
     <%= user_fields.label :lastname %>
     <%= user_fields.text_field :lastname %>
-     <div class="field">
-    <%= user_fields.label :avatar %><br />
-       <%= user_fields.file_field :avatar %>
-  </div>
-
+    <div class="field">
+      <%= user_fields.label :avatar %><br />
+      <%= user_fields.file_field :avatar %>
+    </div>
     <%= user_fields.hidden_field :admin, value: true %>
-
-
-
   <% end %>
-
-
-
-  
-
   <%= form.submit %>
 <% end %>
